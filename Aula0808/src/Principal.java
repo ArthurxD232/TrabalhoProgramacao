@@ -12,6 +12,7 @@ public class Principal {
 
 		Scanner scanner = new Scanner(System.in);
 		int opcao =0;
+		int oi;
 		String login, senha;
 		System.out.println("Você deseja se logar como administrador(1) ou usuario(2)?");
 		opcao = Integer.parseInt(scanner.nextLine());
