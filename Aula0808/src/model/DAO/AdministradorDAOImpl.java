@@ -27,39 +27,51 @@ public class AdministradorDAOImpl implements AdministradorDAO{
 
 
     @Override
-    public void removerproduto(Produto produto) throws SQLException {
-        String SQL ="DELETE FROM produto WHERE idproduto='"+produto.getIdproduto()+"'";
-        ConexaoDAO conexaoDAO = new ConexaoDAO();
-        Connection conexao = conexaoDAO.ConDB("projetofinal");
-        Statement s = conexaoDAO.getS();
-        s.executeUpdate(SQL);
+    public void removerproduto(Produto produto){
+        try {
+            String SQL = "DELETE FROM produto WHERE idproduto='" + produto.getIdproduto() + "'";
+            ConexaoDAO conexaoDAO = new ConexaoDAO();
+            Connection conexao = conexaoDAO.ConDB("projetofinal");
+            Statement s = conexaoDAO.getS();
+            s.executeUpdate(SQL);
+        } catch (SQLException e){
+            System.out.println("O produto não existe");
+        }
     }
 
-    public void alterarproduto() throws SQLException {
-        String SQL;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite o ID do produto a ser alterado");
-        int idproduto = Integer.parseInt(scanner.nextLine());
-        System.out.println("Digite a nova descricao");
-        String descricao = scanner.nextLine();
-        SQL = "UPDATE produto SET descricao= '"+descricao+"' WHERE  idproduto='"+idproduto+"'";
-        ConexaoDAO conexaoDAO = new ConexaoDAO();
-        Connection conexao = conexaoDAO.ConDB("projetofinal");
-        Statement s = conexaoDAO.getS();
-        s.executeUpdate(SQL);
-        conexaoDAO.closeConn();
+    public void alterarproduto(){
+        try {
+            String SQL;
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Digite o ID do produto a ser alterado");
+            int idproduto = Integer.parseInt(scanner.nextLine());
+            System.out.println("Digite a nova descricao");
+            String descricao = scanner.nextLine();
+            SQL = "UPDATE produto SET descricao= '" + descricao + "' WHERE  idproduto='" + idproduto + "'";
+            ConexaoDAO conexaoDAO = new ConexaoDAO();
+            Connection conexao = conexaoDAO.ConDB("projetofinal");
+            Statement s = conexaoDAO.getS();
+            s.executeUpdate(SQL);
+            conexaoDAO.closeConn();
+        } catch (SQLException e){
+            System.out.println("O produto não existe");
+        }
     }
 
     @Override
-    public void registrarusuario(Usuario usuario) throws SQLException {
-        String SQL ="INSERT INTO usuario(idusuario, nome,sobrenome,senha, login, funcao) VALUES " +
-                "("+usuario.getIdusuario()+",'"+usuario.getNome()+"','"+ usuario.getSobrenome()+"','"+usuario.getSenha()+"'," +
-                "'"+usuario.getLogin()+"', '"+usuario.getFuncao()+"')";
-        ConexaoDAO conexaoDAO = new ConexaoDAO();
-        Connection conexao = conexaoDAO.ConDB("projetofinal");
-        Statement s = conexaoDAO.getS();
-        s.executeUpdate(SQL);
-        conexaoDAO.closeConn();
+    public void registrarusuario(Usuario usuario){
+        try {
+            String SQL = "INSERT INTO usuario(idusuario, nome,sobrenome,senha, login, funcao) VALUES " +
+                    "(" + usuario.getIdusuario() + ",'" + usuario.getNome() + "','" + usuario.getSobrenome() + "','" + usuario.getSenha() + "'," +
+                    "'" + usuario.getLogin() + "', '" + usuario.getFuncao() + "')";
+            ConexaoDAO conexaoDAO = new ConexaoDAO();
+            Connection conexao = conexaoDAO.ConDB("projetofinal");
+            Statement s = conexaoDAO.getS();
+            s.executeUpdate(SQL);
+            conexaoDAO.closeConn();
+        } catch (SQLException e){
+            System.out.println("O usuário ja existe");
+        }
     }
 
 

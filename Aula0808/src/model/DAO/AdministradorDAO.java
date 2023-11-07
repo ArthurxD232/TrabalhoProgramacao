@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public interface AdministradorDAO {
     void criarproduto(Produto produto);
-    void removerproduto(Produto produto) throws SQLException;
-    void alterarproduto() throws SQLException;
-    void registrarusuario(Usuario usuario) throws SQLException;
+    void removerproduto(Produto produto);
+    void alterarproduto();
+    void registrarusuario(Usuario usuario);
     void excluirusuario(Usuario usuario) throws SQLException;
     void alterarusuario(Usuario usuario, Login l) throws SQLException;
     void verususarios(Usuario usuario) throws SQLException;
