@@ -12,13 +12,17 @@ import java.util.Scanner;
 
 public class AdministradorDAOImpl implements AdministradorDAO{
     @Override
-    public void criarproduto(Produto produto) throws SQLException {
-        String SQL ="INSERT INTO produto (idproduto,descricao) VALUES " + "("+produto.getIdproduto()+",'"+produto.getDescricao()+"')";
-        ConexaoDAO conexaoDAO = new ConexaoDAO();
-        Connection conexao = conexaoDAO.ConDB("projetofinal");
-        Statement s = conexaoDAO.getS();
-        s.executeUpdate(SQL);
-        conexaoDAO.closeConn();
+    public void criarproduto(Produto produto){
+        try {
+            String SQL = "INSERT INTO produto (idproduto,descricao) VALUES " + "(" + produto.getIdproduto() + ",'" + produto.getDescricao() + "')";
+            ConexaoDAO conexaoDAO = new ConexaoDAO();
+            Connection conexao = conexaoDAO.ConDB("projetofinal");
+            Statement s = conexaoDAO.getS();
+            s.executeUpdate(SQL);
+            conexaoDAO.closeConn();
+        } catch (SQLException e){
+            System.out.println("O produto ja existe");
+        }
     }
 
 
