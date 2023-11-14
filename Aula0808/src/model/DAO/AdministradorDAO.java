@@ -11,8 +11,8 @@ public interface AdministradorDAO {
     void removerproduto(Produto produto);
     void alterarproduto();
     void registrarusuario(Usuario usuario);
-    void excluirusuario(Usuario usuario) throws SQLException;
-    void alterarusuario(Usuario usuario, Login l) throws SQLException;
-    void verususarios(Usuario usuario) throws SQLException;
-    void verproduto() throws SQLException;
+    void excluirusuario(Usuario usuario);
+    void alterarusuario(Usuario usuario, Login l);
+    void verususarios(Usuario usuario);
+    void verproduto();
 }
